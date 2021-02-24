@@ -1,0 +1,14 @@
+//3 tipkala mijenjaju brzinu vrtnje motora na DC0%, DC 50% i DC 100%
+
+void setup(){
+	pinMode(2, INPUT_PULLUP);
+	pinMode(3, INPUT_PULLUP);
+	pinMode(4, INPUT_PULLUP);
+	Serial.begin(9600);
+}
+
+void loop(){
+	if(digitalRead(2)==0) { analogWrite(6, 0);}
+	else if(digitalRead(3)==0) { analogWrite(6, 150);}
+	else if(digitalRead(4)==0) { analogWrite(6, 255);}
+}

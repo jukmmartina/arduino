@@ -1,0 +1,25 @@
+//Pomoću LDR paliti LEDice
+
+void setup(){
+	for(int i=7; i<13; i++){
+	pinMode(i, OUTPUT)
+	}
+	Serial.begin(9600);
+}
+
+void loop(){
+	int x=analogRead(A0);
+	int y=map(x, 200, 1023, 0, 6);
+	Serial.println("x="+String(x)+", y="+String(y));
+	upaliLedice(y);
+	delay(100);
+}
+
+void upaliLedice(int n){
+	for(int i=0, i<6; i++){
+	digitalWrite(i+7, LOW);
+	}
+	for(int i=0, i<n, i++){
+	digitalWrite(i+7, HIGH);
+	}
+}

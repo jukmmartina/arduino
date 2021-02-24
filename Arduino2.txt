@@ -1,0 +1,13 @@
+//Paljenje/gašenje ledice svaki 0.5s pomoću Timera
+
+#include <TimerOne.h>
+volatile bool state;
+void setup (){
+	pinMode(13,OUTPUT);
+	Timer1.initialize(500000);
+	Timer1.attachInterrupt(	Ledica );
+}
+void Ledica(){
+	digitalWrite(13	,state =!state );
+}
+void loop (){}	 

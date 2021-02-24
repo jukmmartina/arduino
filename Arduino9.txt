@@ -1,0 +1,33 @@
+//Prikaz keypad tipki na monitoru i aktivni buzzer na stisak
+
+#include <Keypad.h>
+#define TONE_PIN 12
+const byte ROWS=4, COLS=3;
+char keys[ROWS][COLS]={
+	{'1', '2', '3'}, 
+	{'4', '5', '6'},
+	{'7', '8', '9'},
+	{'*', '0', '#'}};
+byte rowPins[ROWS]={2, 3, 4, 5};
+byte colPins[COLS]={6, 7, 8};
+Keypad keypad=Kepad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
+
+void setup(){
+	pinMode(TONE_PIN, OUTPUT);
+	digitalWrite(TONE_PIN, HIGH);
+	Serial.begin(9600);
+}
+
+void loop(){
+	char key=keypad.getKey();
+	if(key) {
+	Serial.println(key);
+	beep();
+	}
+}
+
+void beep(){
+	digitalWrite(TONE_PIN, LOW);
+	delay(90);
+	digitalWrite(TONE_PIN, HIGH);
+}

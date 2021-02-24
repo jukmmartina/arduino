@@ -1,0 +1,19 @@
+//Trčeće svjetlo na LED pokazniku
+
+#include "LedControl.h"
+LedControl lc=LedControl(12, 11, 10, 1);
+int x=3, y=4, dx=1, dy=1;
+void setup(){
+	lc.shutdown(0, false);
+	lc.setIntensity(0, 8);
+	lc.clearDisplay(0);
+}
+void loop(){
+	lc.setLed(0, x, y, LOW);
+	if((dx<0&&x==0)||(dx>0&&x==7)) dx=-dx;
+	if((dy<0&&y==0)||(dy>0&&y==7)) dy=-dy;
+	x+=dx;
+	y+=dy;
+	lc.setLed(0, x, y, HIGH);
+	delay(200);
+}
